@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI; // text 때문에 추가
+
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { Init(); return s_instance; } }
 
     public InputManager Input => InputManager.Instance;
+    public ResourceManager Resource => ResourceManager.Instance;
+    public SoundManager Sound => SoundManager.Instance;
+    public ScoreManager Score => ScoreManager.Instance;
+
 
     void Awake()
     {
@@ -28,13 +34,18 @@ public class GameManager : MonoBehaviour
 
         }
 
-
         s_instance = go.GetComponent<GameManager>();
-        
        
         DontDestroyOnLoad(go);
 
         _ = InputManager.Instance;
+        _ = ResourceManager.Instance;
+        _ = SoundManager.Instance;
+        _ = ScoreManager.Instance;
+
+        // >> 캔버스에 있는 UI를 드래그 앤 드롭으로 가져와야하는데 어디에 둬야할까 ?=?
+        Text scoreUI = GameObject.Find("Score(num)").GetComponent<Text>();
+        ScoreManager.Instance.Init(scoreUI);
     }
 
 }

@@ -12,6 +12,10 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // >> 점수 추가하는 방법
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GameManager.Instance.Score.AddScore(1);
+        }
     }
 }
