@@ -17,6 +17,18 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    private void Awake() // 잘 생성되었는지 체크
+    {
+        if (s_instance != null && s_instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        s_instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // 경로에서 Resource Load 하기
     public T Load<T>(string path) where T : Object
     {
