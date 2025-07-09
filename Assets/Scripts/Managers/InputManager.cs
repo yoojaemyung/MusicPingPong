@@ -26,18 +26,6 @@ public class InputManager : MonoBehaviour
     public event Action GetSpaceInput;
 
 
-    private void Awake()
-    {
-        if (s_instance != null && s_instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        s_instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
@@ -62,7 +50,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void TestMthod()
+    public void TestMethod()
     {
         Debug.Log("¤¡¤¡");
     }

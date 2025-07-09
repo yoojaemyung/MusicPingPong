@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class SoundManager : MonoBehaviour
 {
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
-
-    // Sound 타입 최대값 필요
-    public AudioSource[] AudioSources; // = new AudioSource[(int)Define.Sound.MaxCount];
+    public AudioSource[] AudioSources = new AudioSource[(int)Define.Sound.MaxCount];
 
     private static SoundManager s_instance;
     public static SoundManager Instance
@@ -24,7 +23,7 @@ public class SoundManager : MonoBehaviour
     }
 
     // Sound 재생하기
-    public void Play(string path, /*Define.Sound type = Define.Sound.Effect,*/ float pitch = 1.0f, float volume = 0.5f)
+    public void Play(string path, Define.Sound type = Define.Sound.Default, float pitch = 1.0f, float volume = 1f)
     {
         if (path.Contains("Sounds/") == false)
             path = $"Sounds/{path}";
@@ -32,7 +31,7 @@ public class SoundManager : MonoBehaviour
         AudioClip audioClip = null;
         if (_audioClips.TryGetValue(path, out audioClip) == false)
         {
-            audioClip = GameManager.Instance.Resource.Load<AudioClip>(path);
+            audioClip = ResourceManager.Instance.Load<AudioClip>(path);
             _audioClips.Add(path, audioClip);
         }
 
@@ -41,14 +40,20 @@ public class SoundManager : MonoBehaviour
             Debug.Log($"AudioClip Missing ! {path}");
         }
 
-        // --> Define으로 Sound 타입 정한 후 재생할 때 설정하는 곳
-        
-        //AudioSource audioSource = AudioSources[(int)Define.Sound.Bgm];
-        //audioSource.pitch = pitch;
-        //audioSource.volume = volume;
-       
-        //audioSource.PlayOneShot(audioClip); // 효과음
-        //audioSource.Play(); // BGM
+        AudioSource audioSource = AudioSources[(int)type];
+        audioSource.pitch = pitch;
+        audioSource.volume = volume;
+
+        // BGM 설정
+        if (type == Define.Sound.Bgm)
+        {
+            audioSource.Play();
+        }
+        // 효과음 설정
+        else if (type == Define.Sound.Effect)
+        {
+            audioSource.PlayOneShot(audioClip); 
+        }
     }
 
     // Sound 멈추기

@@ -42,12 +42,6 @@ public class GameManager : MonoBehaviour
         _ = ResourceManager.Instance;
         _ = SoundManager.Instance;
         _ = ScoreManager.Instance;
-
-        // >> 캔버스에 있는 UI를 드래그 앤 드롭으로 가져와야하는데 어디에 둬야할까 ?=?
-        //Text scoreUI = GameObject.Find("Score(num)").GetComponent<Text>();
-        //ScoreManager.Instance.Init(scoreUI);
-        // 개인적인 생각인데 이 코드는 스코어매니저 스타트 안에 넣으면 될거같은 느낌
-        //여기다 써버리면 의존도가 올라가서 초기화 해줄 때 바로 넣어도 되지않나?
     }
 
 }

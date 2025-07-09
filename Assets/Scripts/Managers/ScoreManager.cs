@@ -18,25 +18,21 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public int Score { get; private set; }
+    private int _score;
     public Text ScoreText;
 
-    //private void Awake() // 이게 낫지 않을까 란 생각? 드래그 안하려면 최선일거같은데
-    //{
-    //    Text scoreUI = GameObject.Find("Score(num)").GetComponent<Text>();
-    //    Init(scoreUI);
-    //}
-    //테스트 결과 작동은 똑같이 잘 됩니다.
-
-    public void Init(Text scoreText)
+    // UI와 점수 변수 값과 연동
+    private void Awake()
     {
+        Text scoreText = GameObject.Find("Score(num)").GetComponent<Text>();
         ScoreText = scoreText;
     }
+
 
     // 점수 추가하는 함수
     public void AddScore(int amount)
     {
-        Score += amount;
+        _score += amount;
         UpdateScoreUI();
     }
 
@@ -44,6 +40,6 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreUI()
     {
         if(ScoreText != null)
-            ScoreText.text = Score.ToString();
+            ScoreText.text = _score.ToString();
     }
 }
