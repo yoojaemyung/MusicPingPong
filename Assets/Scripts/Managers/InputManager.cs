@@ -2,14 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public enum Direction
-{
-    Up,
-    Down,
-    Left,
-    Right
-}
-
 public class InputManager : MonoBehaviour
 {
     private static InputManager s_instance;
@@ -32,7 +24,7 @@ public class InputManager : MonoBehaviour
 
 
     public event Action<Direction> OnArrowInput;
-    public event Action OnSpaceInput;
+    //public event Action OnSpaceInput;
 
 
     void Update()
@@ -43,14 +35,10 @@ public class InputManager : MonoBehaviour
             OnArrowInput?.Invoke(Direction.Down);
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
             OnArrowInput?.Invoke(Direction.Left);
-        else if ( Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
             OnArrowInput?.Invoke(Direction.Right);
-
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            OnSpaceInput?.Invoke();
-        }
+        else if (Input.GetKeyDown (KeyCode.Space))
+            OnArrowInput?.Invoke(Direction.Spacebar);
 
 
         if(Input.GetKeyDown(KeyCode.W))
