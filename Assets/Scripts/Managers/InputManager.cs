@@ -2,6 +2,14 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+public enum Direction
+{
+    Up,
+    Down,
+    Left,
+    Right
+}
+
 public class InputManager : MonoBehaviour
 {
     private static InputManager s_instance;
@@ -22,25 +30,26 @@ public class InputManager : MonoBehaviour
     }
 
 
-    public event Action<Vector2> GetArrowInput;
-    public event Action GetSpaceInput;
+
+    public event Action<Direction> OnArrowInput;
+    public event Action OnSpaceInput;
 
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+            OnArrowInput?.Invoke(Direction.Up);
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            OnArrowInput?.Invoke(Direction.Down);
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            OnArrowInput?.Invoke(Direction.Left);
+        else if ( Input.GetKeyDown(KeyCode.RightArrow))
+            OnArrowInput?.Invoke(Direction.Right);
 
-        Vector2 Arrowkey = new Vector2(x, y).normalized;
-
-        if (Arrowkey != null)
-        {
-            GetArrowInput?.Invoke(Arrowkey);
-        }
 
         if (Input.GetKey(KeyCode.Space))
         {
-            GetSpaceInput?.Invoke();
+            OnSpaceInput?.Invoke();
         }
 
 
