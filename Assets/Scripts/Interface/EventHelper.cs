@@ -4,11 +4,11 @@ public static class EventHelper
 {
     public static void AutoSubscribe(MonoBehaviour obj)
     {
-        if (obj is IEventSubscriber Object) Object.SubscribeEvents();
+        if (obj is IEventSubscriber s) s.SubscribeEvents();
     }
 
     public static void AutoUnSubscribe(MonoBehaviour obj)
     {
-        if(obj is IEventSubscriber Obj) Obj.UnSubscribeEvents();
+        if(obj is IEventSubscriber s) s.UnSubscribeEvents();
     }
 }
