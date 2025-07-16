@@ -34,7 +34,7 @@ public class DirectionSequence
 
     public bool CheckInput(Direction input)
     {
-        if (_currentIndex >= _sequence.Count)
+        if (_currentIndex >= _sequence.Count) // currentindex가 현재 몇번째 차례인지 알려주는 숫자
             return false;
 
         if (_sequence[_currentIndex] == input)
@@ -48,4 +48,8 @@ public class DirectionSequence
     }
 
     public bool IsComplete => _currentIndex >= _sequence.Count;
+
+    public List<Direction> GetSequence() => _sequence;
+
+    public int nowIndex => _currentIndex-1;
 }
