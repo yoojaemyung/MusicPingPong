@@ -18,7 +18,7 @@ public class DirectionSequence
     private List<Direction> _sequence = new();
     private int _currentIndex = 0;
 
-    public void CreateRandom(int count = 9)
+    public void CreateSequence(int count = 9)
     {
         _sequence.Clear();
         _currentIndex = 0;
@@ -26,6 +26,7 @@ public class DirectionSequence
         for(int i = 0; i < count; i++)
         {
             Direction dir = (Direction)UnityEngine.Random.Range(0, 5);
+            _sequence.Add(dir);
         }
 
     }
@@ -33,12 +34,13 @@ public class DirectionSequence
 
     public bool CheckInput(Direction input)
     {
-        if (_currentIndex < _sequence.Count)
+        if (_currentIndex >= _sequence.Count)
             return false;
 
         if (_sequence[_currentIndex] == input)
         {
             _currentIndex++;
+            Debug.Log("Á¤´ä");
             return true;
         }
 
