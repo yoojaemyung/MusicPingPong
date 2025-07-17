@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public ResourceManager Resource => ResourceManager.Instance;
     public SoundManager Sound => SoundManager.Instance;
     public ScoreManager Score => ScoreManager.Instance;
+    public SceneManager Scene => SceneManager.Instance;
 
 
     void Awake()
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         _ = ResourceManager.Instance;
         _ = SoundManager.Instance;
         _ = ScoreManager.Instance;
+        _ = SceneManager.Instance;
     }
 
 }

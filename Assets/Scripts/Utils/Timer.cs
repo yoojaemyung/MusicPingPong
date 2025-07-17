@@ -6,7 +6,9 @@ public class Timer : MonoBehaviour
     public Text TimeText;
 
     private float _timer = 0f;
-    private int _displayTime = 60;
+    private int _displayTime = 10;
+    private string _endScene = "3. End";
+
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class Timer : MonoBehaviour
 
             if (_displayTime == 0)
             {
-                Debug.Log("타이머 종료");
+                SceneManager.Instance.LoadScene(_endScene);
             }
         }
     }

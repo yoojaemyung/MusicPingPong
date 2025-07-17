@@ -21,6 +21,12 @@ public class ScoreManager : MonoBehaviour
     private int _score;
     public Text ScoreText;
 
+    public int Score
+    {
+        get { return _score; }
+    }
+
+
     // UI와 점수 변수 값과 연동
     private void Awake()
     {
@@ -28,6 +34,12 @@ public class ScoreManager : MonoBehaviour
         ScoreText = scoreText;
     }
 
+    // UI 갱신용 함수
+    private void UpdateScoreUI()
+    {
+        if (ScoreText != null)
+            ScoreText.text = _score.ToString();
+    }
 
     // 점수 추가하는 함수
     public void AddScore(int amount)
@@ -36,10 +48,10 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreUI();
     }
 
-    // UI 갱신용 함수
-    private void UpdateScoreUI()
+    // 재시작시 점수 초기화용 함수
+    public void ResetScore()
     {
-        if(ScoreText != null)
-            ScoreText.text = _score.ToString();
+        _score = 0;
+        UpdateScoreUI();
     }
 }
