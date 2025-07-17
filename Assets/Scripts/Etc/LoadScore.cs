@@ -8,5 +8,6 @@ public class LoadScore : MonoBehaviour
     private void Start()
     {
         ScoreText.text += ScoreManager.Instance.Score.ToString();
+        ScoreText.text += "Á¡";
     }
 }
