@@ -21,6 +21,7 @@ public class ScoreManager : MonoBehaviour
     private int _score;
     public Text ScoreText;
 
+
     public int Score
     {
         get { return _score; }

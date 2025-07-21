@@ -19,8 +19,13 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    private string _startScene = "1. Start";
+    private string _gameScene = "2. Game";
+    private string _endScene = "3. End";
+
+
     // 씬 로드시 구독한 함수 발동
-    void Awake()
+    void Start()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -43,8 +48,24 @@ public class SceneManager : MonoBehaviour
    
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Score Text 찾기
         GameObject scoreObj = GameObject.Find("Score(num)");
         if (scoreObj != null)
             ScoreManager.Instance.ScoreText = scoreObj.GetComponent<Text>();
+
+        // Sound 설정
+        if (scene.name == _startScene)
+        {
+            SoundManager.Instance.Play("startBGM", Define.Sound.Bgm, 0.4f);
+        }
+        else if(scene.name == _gameScene)
+        {
+            SoundManager.Instance.Play("gameBGM", Define.Sound.Bgm, 0.4f);
+        }
+        else if(scene.name == _endScene)
+        {
+            SoundManager.Instance.Clear();
+            SoundManager.Instance.Play("gameover", Define.Sound.Effect, 0.5f);
+        }
     }
 }

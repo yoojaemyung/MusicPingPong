@@ -4,9 +4,6 @@ using static Define;
 
 public class SoundManager : MonoBehaviour
 {
-    Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
-    public AudioSource[] AudioSources = new AudioSource[(int)Define.Sound.MaxCount];
-
     private static SoundManager s_instance;
     public static SoundManager Instance
     {
@@ -22,6 +19,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+    public AudioSource[] AudioSources = new AudioSource[(int)Define.Sound.MaxCount];
+
+
     public void Start()
     {
         // 시작시 각 사운드별 AudioSource가 있는 GameObj 생성
@@ -32,13 +33,17 @@ public class SoundManager : MonoBehaviour
             AudioSources[i] = audioObj.AddComponent<AudioSource>();
 
             if ((Define.Sound)i == Define.Sound.Bgm)
+            {
                 AudioSources[i].loop = true;
+            }
         }
+
+        SoundManager.Instance.Play("startBGM", Define.Sound.Bgm, 0.4f);
     }
 
 
     // Sound 재생하기
-    public void Play(string path, Define.Sound type, float pitch = 1.0f, float volume = 1f)
+    public void Play(string path, Define.Sound type, float volume = 1f, float pitch = 1.0f)
     {
         if (path.Contains("Sounds/") == false)
             path = $"Sounds/{path}";
@@ -62,10 +67,11 @@ public class SoundManager : MonoBehaviour
         // BGM 설정
         if (type == Define.Sound.Bgm)
         {
+            audioSource.clip = audioClip;
             audioSource.Play();
         }
         // 효과음 설정
-        else if (type == Define.Sound.Effect)
+        else
         {
             audioSource.PlayOneShot(audioClip); 
         }
