@@ -22,8 +22,23 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        // 시작시 각 사운드별 AudioSource가 있는 GameObj 생성
+        for (int i = 0; i < AudioSources.Length; i++)
+        {
+            GameObject audioObj = new GameObject($"AudioSource_{((Define.Sound)i).ToString()}");
+            audioObj.transform.parent = this.transform;
+            AudioSources[i] = audioObj.AddComponent<AudioSource>();
+
+            if ((Define.Sound)i == Define.Sound.Bgm)
+                AudioSources[i].loop = true;
+        }
+    }
+
+
     // Sound 재생하기
-    public void Play(string path, Define.Sound type = Define.Sound.Default, float pitch = 1.0f, float volume = 1f)
+    public void Play(string path, Define.Sound type, float pitch = 1.0f, float volume = 1f)
     {
         if (path.Contains("Sounds/") == false)
             path = $"Sounds/{path}";

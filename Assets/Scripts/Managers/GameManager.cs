@@ -1,8 +1,4 @@
-using System.Runtime.CompilerServices;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI; // text 때문에 추가
-
 
 public class GameManager : MonoBehaviour
 {
@@ -15,11 +11,6 @@ public class GameManager : MonoBehaviour
     public ScoreManager Score => ScoreManager.Instance;
     public SceneManager Scene => SceneManager.Instance;
 
-
-    void Awake()
-    {
-        //Init();
-    }
 
     static void Init()
     {
@@ -45,5 +36,4 @@ public class GameManager : MonoBehaviour
         _ = ScoreManager.Instance;
         _ = SceneManager.Instance;
     }
-
 }

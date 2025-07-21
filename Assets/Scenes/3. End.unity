@@ -6580,6 +6580,7 @@ GameObject:
   - component: {fileID: 1518121368}
   - component: {fileID: 1518121367}
   - component: {fileID: 1518121370}
+  - component: {fileID: 1518121371}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -6713,6 +6714,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameScene: 1. Start
+--- !u!114 &1518121371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518121365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534b323bebc695944ac1615741ef5472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1521921321
 PrefabInstance:
   m_ObjectHideFlags: 0

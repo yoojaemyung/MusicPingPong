@@ -27,13 +27,6 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    // UI와 점수 변수 값과 연동
-    private void Awake()
-    {
-        Text scoreText = GameObject.Find("Score(num)").GetComponent<Text>();
-        ScoreText = scoreText;
-    }
-
     // UI 갱신용 함수
     private void UpdateScoreUI()
     {
