@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class DirectionController : MonoBehaviour, IEventSubscriber
 {
     [SerializeField] private DirectionUI _ui;
     private DirectionSequence _sequence = new();
+    private bool _canExchange = true;
      
 
     public void SubscribeEvents()
@@ -39,8 +41,10 @@ public class DirectionController : MonoBehaviour, IEventSubscriber
                 StartCoroutine(DelayReset());
             }
         }
-        else
+        else if (_canExchange) // ½ÇÆÐ
         {
+            _ui.SetWrong(_sequence._currentIndex);
+            _canExchange = false;
             StartCoroutine(DelayReset());
         }
     }
@@ -53,9 +57,10 @@ public class DirectionController : MonoBehaviour, IEventSubscriber
     }
 
     private IEnumerator DelayReset()
-    {
+    {     
         yield return new WaitForSeconds(1f);
         ResetSequence();
+        _canExchange = true;
     }
 
 }

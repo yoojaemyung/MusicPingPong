@@ -16,7 +16,7 @@ public enum Direction
 public class DirectionSequence
 {
     private List<Direction> _sequence = new();
-    private int _currentIndex = 0;
+    public int _currentIndex = 0;
 
     public void CreateSequence(int count = 9)
     {
@@ -34,7 +34,7 @@ public class DirectionSequence
 
     public bool CheckInput(Direction input)
     {
-        if (_currentIndex >= _sequence.Count) // currentindex가 현재 몇번째 차례인지 알려주는 숫자
+        if (_currentIndex >= _sequence.Count) // currentindex는 현재 몇번째 차례인지 알려주는 숫자
             return false;
 
         if (_sequence[_currentIndex] == input)

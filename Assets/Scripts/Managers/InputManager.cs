@@ -24,7 +24,6 @@ public class InputManager : MonoBehaviour
 
 
     public event Action<Direction> OnArrowInput;
-    //public event Action OnSpaceInput;
 
 
     void Update()
