@@ -54,11 +54,8 @@ public class DirectionController : MonoBehaviour, IEventSubscriber
 
     private IEnumerator DelayReset()
     {
-        InputManager.Instance.CanInput = false;
-
         yield return new WaitForSeconds(1f);
         ResetSequence();
-        InputManager.Instance.CanInput = true;
     }
 
 }
