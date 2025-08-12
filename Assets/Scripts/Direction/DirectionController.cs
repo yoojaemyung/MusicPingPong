@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DirectionController : MonoBehaviour, IEventSubscriber
 {
+    [SerializeField] private PlayerController _player;
     [SerializeField] private DirectionUI _ui;
     private DirectionSequence _sequence = new();
     private bool _canExchange = true;
@@ -33,17 +34,20 @@ public class DirectionController : MonoBehaviour, IEventSubscriber
 
         if (InputArrow)
         {
-            _ui.SetCorrect(_sequence.nowIndex);
+            _ui.SetCorrect(_sequence.beforeIndex);
 
-            if(_sequence.IsComplete)
+            if(_sequence.IsComplete && _canExchange)
             {
                 ScoreManager.Instance.AddScore(20);
+                _canExchange = false;
+                _player.PlaySuccessAnimation();
                 StartCoroutine(DelayReset());
             }
         }
         else if (_canExchange) // ½ÇÆÐ
         {
             _ui.SetWrong(_sequence._currentIndex);
+            _player.PlayFailAnimation();
             _canExchange = false;
             StartCoroutine(DelayReset());
         }

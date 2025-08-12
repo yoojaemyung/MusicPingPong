@@ -40,7 +40,6 @@ public class DirectionSequence
         if (_sequence[_currentIndex] == input)
         {
             _currentIndex++;
-            Debug.Log("Á¤´ä");
             return true;
         }
 
@@ -51,5 +50,5 @@ public class DirectionSequence
 
     public List<Direction> GetSequence() => _sequence;
 
-    public int nowIndex => _currentIndex-1;
+    public int beforeIndex => _currentIndex-1;
 }

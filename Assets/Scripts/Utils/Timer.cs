@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
     public Text TimeText;
 
     private float _timer = 0f;
-    private int _displayTime = 10;
+    private int _displayTime = 30;
     private string _endScene = "3. End";
 
 
