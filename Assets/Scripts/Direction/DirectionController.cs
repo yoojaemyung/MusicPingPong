@@ -32,19 +32,21 @@ public class DirectionController : MonoBehaviour, IEventSubscriber
     {
         bool InputArrow = _sequence.CheckInput(dir);
 
-        if (InputArrow)
+        if (InputArrow && _canExchange)
         {
+
             _ui.SetCorrect(_sequence.beforeIndex);
 
-            if(_sequence.IsComplete && _canExchange)
+            if(_sequence.IsComplete)
             {
                 ScoreManager.Instance.AddScore(20);
                 _canExchange = false;
                 _player.PlaySuccessAnimation();
                 StartCoroutine(DelayReset());
             }
+            
         }
-        else if (_canExchange) // 실패
+        else if(_canExchange)// 실패
         {
             _ui.SetWrong(_sequence._currentIndex);
             _player.PlayFailAnimation();
